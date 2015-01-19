@@ -1,0 +1,14 @@
+.*
+*.pyc
+coverage.xml
+build/
+django_dynamic_forms.egg-info/
+dist/
+docs/build/
+
+example/*.db
+
+!.bumpversion.cfg
+!.coveragerc
+!.gitignore
+!.travis.yml
