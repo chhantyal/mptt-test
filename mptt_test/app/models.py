@@ -20,5 +20,4 @@ class Page(ResourceAbstract):
 	body = models.TextField(blank=True)
 
 
-def get_page_fields():
-	return Page._meta.get_fields()
+Page._meta.get_fields()
