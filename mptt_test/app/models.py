@@ -2,6 +2,7 @@ from django.db import models
 
 from mptt.models import MPTTModel, TreeForeignKey
 from mptt.managers import TreeManager
+from model_utils.managers import InheritanceManager
 
 
 class ResourceAbstract(MPTTModel):
@@ -13,11 +14,20 @@ class ResourceAbstract(MPTTModel):
     objects = tree = TreeManager()
 
     class Meta:
-    	abstract = True
+        abstract = True
 
 
 class Page(ResourceAbstract):
-	body = models.TextField(blank=True)
+    body = models.TextField(blank=True)
 
 
-Page._meta.get_fields()
+class PageProxy(Page):
+
+    objects = InheritanceManager()
+
+    class Meta:
+        proxy = True
+
+
+class Blog(PageProxy):
+    quote = models.CharField(max_length=255)
